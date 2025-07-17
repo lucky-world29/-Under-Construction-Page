@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coming Soon | Abhi's Project</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <!-- Vue CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- Particles.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      height: 100%;
+      overflow: hidden;
+      background-color: #0d1117;
+      color: white;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #0d1117;
+      z-index: 0;
+    }
+
+    #comingSoonApp {
+      position: absolute;
+      text-align: center;
+      z-index: 2;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #ddd;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Vue App Content -->
+  <div id="comingSoonApp">
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+  </div>
+
+  <script>
+    // Vue Instance
+    new Vue({
+      el: '#comingSoonApp',
+      data: {
+        title: '🛠️ Projects Under Construction',
+        message: 'Stay tuned. Coding. Tweaking. Perfecting. My creations are almost ready..'
+      }
+    });
+
+    // Particles.js Config
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80 },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.3,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 1.5,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 0.5 }},
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Bouncing Text Animation
+    const textBlock = document.getElementById('comingSoonApp');
+    let x = Math.random() * window.innerWidth * 0.6;
+    let y = Math.random() * window.innerHeight * 0.6;
+    let dx = 0.4;
+    let dy = 0.3;
+
+    function animateText() {
+      const rect = textBlock.getBoundingClientRect();
+      if (x + rect.width >= window.innerWidth || x <= 0) dx *= -1;
+      if (y + rect.height >= window.innerHeight || y <= 0) dy *= -1;
+
+      x += dx;
+      y += dy;
+
+      textBlock.style.transform = `translate(${x}px, ${y}px)`;
+      requestAnimationFrame(animateText);
+    }
+
+    animateText();
+  </script>
+</body>
+</html>
